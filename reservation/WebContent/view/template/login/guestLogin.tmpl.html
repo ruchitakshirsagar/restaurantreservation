@@ -1,0 +1,93 @@
+<div class="guestLoginInfo">
+
+  <p class="resNote">Welcome to  Greek Restaurant </p>
+
+  <div class="guestReservation">
+
+    <!-- Form name is reuired for error message. Stop HTML5 validation-->
+    <!-- pass valid form to controller, 'form.$valid' is true when all entered fields are valid-->
+    <!-- Remove: ng-submit="guestLoginVm.makeReservation(guestLoginForm)", using ng-click on anchor tag & pass form name there.  -->
+    <form name="guestLoginForm" novalidate >
+
+      <ul>
+        <li>
+          <label for="guestFirstName">First Name</label>
+          <input type="textbox" id="guestFirstName" name="guestFirstName" ng-minlength="2" ng-maxlength="20" placeholder="enter your first name" ng-model="guestLoginVm.newPerson.firstName" required>
+          <!-- if only dirty check and show message -->
+          <div ng-messages="guestLoginForm.guestFirstName.$error" ng-if="guestLoginForm.guestFirstName.$dirty" class="formErrorMessage">
+            <p ng-message="required">First Name is required.</p>
+            <p ng-message-exp="['minlength', 'maxlength']">Required field must be 2 to 20 chars long.</p>
+          </div>
+        </li>
+        <li>
+          <label for="guestLastName">Last Name</label>
+          <input type="textbox" id="guestLastName" name="guestLastName" ng-minlength="2" ng-maxlength="20" placeholder="enter your last name" ng-model="guestLoginVm.newPerson.lastName" required>
+          <!-- if only dirty check and show message. Provide a proper msg if error on property guestLoginForm.guestLastName -->
+          <div ng-messages="guestLoginForm.guestLastName.$error" ng-if="guestLoginForm.guestLastName.$dirty" class="formErrorMessage">
+            <p ng-message="required">Last Name is required.</p>
+            <p ng-message-exp="['minlength', 'maxlength']">Required field must be 2 to 20 chars long.</p>
+          </div>
+        </li>
+        <li>
+          <label for="guestDate">Date</label>
+          <input type="date" id="guestDate" name="guestDate" ng-model="guestLoginVm.newPerson.date" required>
+          <!-- if only dirty check and show message -->
+          <div ng-messages="guestLoginForm.guestDate.$error" ng-if="guestLoginForm.guestDate.$dirty" class="formErrorMessage">
+            <p ng-message="required">Date is required.</p>
+          </div>
+        </li>
+        <li>
+          <label for="guestTime">Time</label>
+          <input type="time" id="guestTime" name="guestTime" placeholder="hh:mm" ng-model="guestLoginVm.newPerson.time" required>
+          <!-- if only dirty check and show message -->
+          <div ng-messages="guestLoginForm.guestTime.$error" ng-if="guestLoginForm.guestTime.$dirty" class="formErrorMessage">
+            <p ng-message="required">Time is required.</p>
+          </div>
+        </li>
+        <li>
+          <label for="guestEmail">Email</label>
+          <input type="email" id="guestEmail" name="guestEmail" minlength="6" placeholder="example@domain.com" ng-model="guestLoginVm.newPerson.email" required>
+          <!-- if only dirty check and show message -->
+          <div ng-messages="guestLoginForm.guestEmail.$error" ng-if="guestLoginForm.guestEmail.$dirty" class="formErrorMessage">
+            <p ng-message="required">Email is required.</p>
+            <p ng-message="email">Email is invalid.</p>
+            <p ng-message="minlength">Email must be atleast 6 chars long.</p>
+          </div>
+        </li>
+        <li>
+          <label for="guestPhone">Phone Number</label>
+          <input type="phone" id="guestPhone" name="guestPhone" placeholder="(800)999-8000" ng-pattern="/^[0-9]{10}$/" ng-model="guestLoginVm.newPerson.phone" required>
+          <!-- if only dirty check and show message -->
+          <div ng-messages="guestLoginForm.guestPhone.$error" ng-if="guestLoginForm.guestPhone.$dirty" class="formErrorMessage">
+            <p ng-message="required">Phone is required.</p>
+            <p ng-message="pattern">Phone must be 10 digit long.</p>
+          </div>
+        </li>
+        <li>
+          <label for="guestTable">Table</label>
+          <input type="text" id="guestTable" name="guestTable" placeholder="table selecion, e.g. A2" ng-model="guestLoginVm.newPerson.table" required>
+          <!-- if only dirty check and show message -->
+          <div ng-messages="guestLoginForm.guestTable.$error" ng-if="guestLoginForm.guestTable.$dirty" class="formErrorMessage">
+            <p ng-message="required">Please select a table.</p>
+          </div>
+        </li>
+        <li>
+          <label for="guestpartySize">Party Size</label>
+          <input type="number" id="guestpartySize" name="guestpartySize" placeholder="count" ng-model="guestLoginVm.newPerson.partySize" required>
+          <!-- if only dirty check and show message -->
+          <div ng-messages="guestLoginForm.guestpartySize.$error" ng-if="guestLoginForm.guestpartySize.$dirty" class="formErrorMessage">
+            <p ng-message="required">Party size is required.</p>
+          </div>
+        </li>
+      </ul>
+
+      <!-- if 'ng-click="guestLoginVm.makeReservation()' is used,form is not submitted on pressing Enter. 
+           However, ng-submit allows you to submit even on pressing Enter key.  -->
+      <!-- Pass the form name for further validation -->
+      <a class="reservationDetails" ng-click="guestLoginVm.makeReservation(guestLoginForm);" > Reserve </a>
+
+    </form>
+
+  </div>
+
+</div>

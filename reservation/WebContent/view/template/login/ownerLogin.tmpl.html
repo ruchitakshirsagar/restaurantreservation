@@ -1,0 +1,43 @@
+<div class="ownerLoginInfo">
+	<p class="resNote">Welcome to Greek Restaurant</p>
+
+	<div class="ownerLogin">
+
+		<form class="ownerLoginForm" name="ownerLoginForm" novalidate>
+		
+			<ul>
+				<li><label for="ownerEmail">Email id</label></li>
+				<li>
+					<input type="email" id="ownerEmail" placeholder="example@domain.com"  name="ownerEmail" minlength="6"   
+						placeholder="example@domain.com" ng-model="ownerLoginVm.owner.email" required >
+				</li>
+					
+					<div ng-messages="ownerLoginForm.ownerEmail.$error" ng-if="ownerLoginForm.ownerEmail.$dirty" class="formErrorMessage">
+							<p ng-message="required">Email is required.</p>
+							<p ng-message="email">Email is invalid.</p>
+							<p ng-message="minlength">Email must be atleast 6 chars long.</p>
+					</div>
+					
+				<li><label for="ownerPassword">Password</label></li>
+				<li>
+					<input type="password" id="ownerPassword" name="ownerPassword" placeholder="password"  minlength="6"   
+						ng-model="ownerLoginVm.owner.password" required>
+				</li>
+					
+					<div ng-messages="ownerLoginForm.ownerPassword.$error" ng-if="ownerLoginForm.ownerPassword.$dirty" class="formErrorMessage">
+							<p ng-message="required">Email is required.</p>
+							<p ng-message="minlength">Password must be atleast 6 chars long.</p>					
+					</div>
+										
+				<li>
+					<a class="reservationDetails" id="reservationTextMsg" 
+					name="sendReservationMsg" ng-click="ownerLoginVm.ownerLogin(ownerLoginForm);" >Login</a>
+				</li>
+				
+			</ul>
+
+		</form>
+
+	</div>
+
+</div>

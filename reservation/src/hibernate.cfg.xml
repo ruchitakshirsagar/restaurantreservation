@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+  "-//Hibernate/Hibernate Configuration DTD//EN"
+  "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+
+		<!--    find the appropriate 'Driver' class path under 'jdbc_driver_jar'    -->
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        
+        <!--    jdbc:<DATABASE>://<IP>:<PORT>/<DATABASE_NAME>    -->		
+        <property name="connection.url">jdbc:mysql://localhost:3306/reservationDataBase</property>
+        
+        <property name="connection.username">root</property>
+        <property name="connection.password">root</property>
+        
+        <!-- SQL dialect : find the appropriate path inside 'hibernate_core_jar' & select class as per database type -->
+        <!-- defines the language in which Hibernate talks with Database, here SQL...
+        	 Hibernate writes queries for us, it will use this dialect to write appropriate SQL queries.
+         -->  
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- Disable the second-level cache  -->
+        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+        
+        <!-- Echo all executed SQL to 'stdout' -->
+        <property name="show_sql">true</property>
+
+
+        <!-- Drop and re-create the database SCHEMA (using model and its prop.) on startup if "create" is used. 
+        	 Is helpful when we are building the application and we want to make frequent changes to model & 
+        	 hence the Database (built new table every time)
+        	 Hibernate - drops existing table, creates a new one, performs intended operation. 
+        -->
+        <!-- If "update" is used then the original data is retained. 
+        	 If model is changed then...
+			 1. Current variable name changed - original column is preserved while a new column is added in DB.          	
+        	    So DB will have additional columns (one with old variable name and one new).
+        	 2. New variable added - New column is created and the previous columns are kept as it is.     
+         -->
+        <property name="hbm2ddl.auto">create</property>
+
+		<!-- Names the annotated entity class -->
+		<mapping class="org.webservice.reservation.model.Reservation" />
+		<mapping class="org.webservice.reservation.model.Message" />
+		<mapping class="org.webservice.reservation.model.Menu" />
+		<mapping class="org.webservice.reservation.model.Owner" />
+		<mapping class="org.webservice.reservation.model.ResourceInformation" />
+		
+				
+				
+	</session-factory>
+</hibernate-configuration>
+
+
+
+
+
+
+
+
